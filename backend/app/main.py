@@ -129,6 +129,12 @@ async def root():
     }
 
 
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    from fastapi.responses import Response
+    return Response(status_code=204)
+
+
 @app.get("/health", tags=["Health"])
 async def health_check():
     """Detailed health check with component status."""
