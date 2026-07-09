@@ -22,6 +22,8 @@ export interface Plant {
 
 // Equipment
 export interface Equipment {
+  id?: string;
+  tagId?: string;
   tag_id: string;
   name: string;
   type: string;
@@ -172,10 +174,14 @@ export interface TribalKnowledge {
   id: string;
   equipment_tag: string;
   equipment_name: string;
+  equipment?: string;
   type: 'Quirk' | 'Tip' | 'Warning' | 'Procedure';
   content: string;
   expert_name: string;
+  expert?: string;
   date_added: string;
+  date?: string;
+  createdAt?: string;
   upvotes: number;
   verified: boolean;
 }
@@ -215,6 +221,12 @@ export interface DashboardMetrics {
   compliance_gaps: number;
   recent_queries: number;
   risk_alerts: number;
+  total_equipment?: number;
+  total_documents?: number;
+  compliance_percentage?: number;
+  total_incidents?: number;
+  total_conversations?: number;
+  recent_incidents?: any[];
 }
 
 export interface ActivityItem {

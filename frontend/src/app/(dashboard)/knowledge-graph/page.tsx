@@ -254,8 +254,7 @@ export default function KnowledgeGraphPage() {
             nodeLabel="label"
             nodeColor={(node: any) => getNodeColor(node.type)}
             nodeRelSize={6}
-            linkColor={() => '#1e293b'}
-            linkOpacity={0.6}
+            linkColor={() => 'rgba(30, 41, 59, 0.6)'}
             linkWidth={1.5}
             linkDirectionalArrowLength={3.5}
             linkDirectionalArrowRelPos={1}

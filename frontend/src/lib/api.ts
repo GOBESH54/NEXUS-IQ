@@ -38,14 +38,16 @@ export async function getDashboardMetrics(): Promise<DashboardMetrics> {
         risk_alerts: 0,
       };
     }
+    const compPct = overview.compliance_percentage ?? 100;
+    const incidents = overview.total_incidents ?? 0;
     return {
-      knowledge_health_score: Math.max(0, Math.min(100, 100 - (overview.compliance_percentage * 0.2) - (overview.total_incidents * 2))),
-      documents_indexed: overview.total_documents,
-      active_equipment: overview.total_equipment,
-      compliance_gaps: overview.compliance_percentage < 100 ? Math.max(0, Math.round((100 - overview.compliance_percentage) / 10)) : 0,
-      recent_queries: overview.total_conversations,
+      knowledge_health_score: Math.max(0, Math.min(100, 100 - (compPct * 0.2) - (incidents * 2))),
+      documents_indexed: overview.total_documents ?? 0,
+      active_equipment: overview.total_equipment ?? 0,
+      compliance_gaps: compPct < 100 ? Math.max(0, Math.round((100 - compPct) / 10)) : 0,
+      recent_queries: overview.total_conversations ?? 0,
       risk_alerts: Array.isArray(overview.recent_incidents)
-        ? overview.recent_incidents.filter((incident) => (incident.severity || '').toLowerCase() !== 'minor').length
+        ? overview.recent_incidents.filter((incident: any) => (incident.severity || '').toLowerCase() !== 'minor').length
         : 0,
     };
   }
