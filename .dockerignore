@@ -1,0 +1,10 @@
+.git
+.gitignore
+README.md
+RENDER_DEPLOYMENT_GUIDE.md
+frontend
+*.db
+backend/chroma_db
+backend/uploads
+backend/venv
+backend/__pycache__
