@@ -60,20 +60,44 @@ Contributing: 6-month lubrication interval may be too long for current duty cycl
 function renderContent(content: string) {
   return content.split('\n').map((line, i) => {
     if (line === '') return <div key={i} className="h-2" />;
+    if (line.trim() === '---') {
+      return <hr key={i} className="border-[#2a374a] my-3" />;
+    }
+    if (line.startsWith('### ')) {
+      return <h3 key={i} className="text-cyan-400 font-bold text-base mt-3 mb-1">{line.replace('### ', '')}</h3>;
+    }
+    if (line.startsWith('#### ')) {
+      return <h4 key={i} className="text-blue-300 font-semibold text-sm mt-2 mb-1">{line.replace('#### ', '')}</h4>;
+    }
     if (line.startsWith('⚠️')) {
       return <p key={i} className="text-amber-400 font-semibold my-1">{line}</p>;
     }
-    if (line.includes('**')) {
-      const parts = line.split('**');
+
+    const renderBoldSegments = (text: string) => {
+      if (!text.includes('**')) return <span>{text}</span>;
+      const parts = text.split('**');
       return (
-        <p key={i} className="my-0.5">
+        <>
           {parts.map((p, j) =>
             j % 2 === 1 ? <strong key={j} className="font-semibold text-white">{p}</strong> : <span key={j}>{p}</span>
           )}
+        </>
+      );
+    };
+
+    if (line.trim().startsWith('•')) {
+      return (
+        <p key={i} className="my-0.5 pl-2 text-slate-300">
+          {renderBoldSegments(line)}
         </p>
       );
     }
-    return <p key={i} className="my-0.5">{line}</p>;
+
+    return (
+      <p key={i} className="my-0.5 text-slate-200">
+        {renderBoldSegments(line)}
+      </p>
+    );
   });
 }
 

@@ -8,11 +8,14 @@ import {
   DollarSign, FileCheck, AlertCircle
 } from 'lucide-react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function EquipmentDetailPage({ params }: { params: { tagId: string } }) {
+export default function EquipmentDetailPage({ params }: { params?: { tagId?: string } }) {
   const [activeTab, setActiveTab] = useState('overview');
-  const decodedTag = decodeURIComponent(params.tagId);
+  const routeParams = useParams();
+  const rawTagId = (routeParams?.tagId as string) || params?.tagId || 'BF-P-07A';
+  const decodedTag = decodeURIComponent(rawTagId);
 
   // Find equipment safely handling both tag_id and tagId
   const foundEquipment = mockEquipment.find(eq => 

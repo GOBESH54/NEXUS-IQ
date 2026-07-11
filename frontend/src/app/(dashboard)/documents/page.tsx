@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getDocuments } from '@/lib/api';
 import {
-  FileText, Search, Filter, Upload, MoreVertical, File,
+  FileText, Search, Filter, Upload, MoreVertical, File as FileIcon,
   Settings, AlertTriangle, Clock, CheckCircle2, X,
   Eye, Download, Trash2
 } from 'lucide-react';
@@ -137,7 +137,7 @@ export default function DocumentsPage() {
   const getDocIcon = (type: string) => {
     switch (type) {
       case 'Manual': return <FileText className="w-8 h-8 text-blue-500" />;
-      case 'SOP': return <File className="w-8 h-8 text-emerald-500" />;
+      case 'SOP': return <FileIcon className="w-8 h-8 text-emerald-500" />;
       case 'Maintenance Record': return <Settings className="w-8 h-8 text-amber-500" />;
       case 'Incident Report': return <AlertTriangle className="w-8 h-8 text-red-500" />;
       default: return <FileText className="w-8 h-8 text-slate-400" />;

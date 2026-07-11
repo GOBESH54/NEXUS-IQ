@@ -87,15 +87,16 @@ export default function TribalKnowledgePage() {
       filtered = filtered.filter(
         (e) =>
           e.content?.toLowerCase().includes(q) ||
-          e.equipment?.toLowerCase().includes(q) ||
-          e.expert?.toLowerCase().includes(q)
+          (e.equipment || e.equipment_name || e.equipment_tag || '').toLowerCase().includes(q) ||
+          (e.expert || e.expert_name || '').toLowerCase().includes(q)
       );
     }
 
     // Equipment filter
     if (equipmentFilter !== 'all') {
       filtered = filtered.filter(
-        (e) => e.equipment?.toLowerCase() === equipmentFilter.toLowerCase()
+        (e) => (e.equipment || e.equipment_name || e.equipment_tag || '').toLowerCase() === equipmentFilter.toLowerCase() ||
+               (e.equipment_name || '').toLowerCase().includes(equipmentFilter.toLowerCase())
       );
     }
 
@@ -112,8 +113,8 @@ export default function TribalKnowledgePage() {
     } else {
       filtered.sort(
         (a, b) =>
-          new Date(b.date || b.createdAt || 0).getTime() -
-          new Date(a.date || a.createdAt || 0).getTime()
+          new Date(b.date_added || b.date || b.createdAt || 0).getTime() -
+          new Date(a.date_added || a.date || a.createdAt || 0).getTime()
       );
     }
 
@@ -309,7 +310,7 @@ export default function TribalKnowledgePage() {
                     {badge.label}
                   </span>
                   <span className="px-2.5 py-1 rounded-md text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20">
-                    {entry.equipment}
+                    {entry.equipment_tag || entry.equipment_name || entry.equipment || 'General'}
                   </span>
                 </div>
                 {entry.verified && (
@@ -327,11 +328,11 @@ export default function TribalKnowledgePage() {
                 <div className="flex items-center gap-4 text-xs text-slate-400">
                   <span className="flex items-center gap-1">
                     <User className="w-3.5 h-3.5" />
-                    {entry.expert}
+                    {entry.expert_name || entry.expert || 'Team Expert'}
                   </span>
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5" />
-                    {entry.date || entry.createdAt}
+                    {entry.date_added || entry.date || entry.createdAt || 'Recent'}
                   </span>
                 </div>
                 <button

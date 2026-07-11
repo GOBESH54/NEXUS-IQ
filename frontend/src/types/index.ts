@@ -110,7 +110,7 @@ export interface Citation {
   document_name: string;
   page: number;
   snippet: string;
-  relevance_score: number;
+  relevance_score?: number;
 }
 
 export interface AgentTrace {

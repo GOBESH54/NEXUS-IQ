@@ -132,7 +132,7 @@ export default function AnalyticsPage() {
             <span className="text-sm text-slate-400">Best MTBF Equipment</span>
           </div>
           <p className="text-2xl font-bold text-white truncate">
-            {bestMTBF?.equipment || bestMTBF?.name || 'N/A'}
+            {bestMTBF?.equipment_type || bestMTBF?.equipment || bestMTBF?.name || 'N/A'}
           </p>
         </div>
 
@@ -159,7 +159,7 @@ export default function AnalyticsPage() {
             <BarChart data={data.downtime}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
               <XAxis
-                dataKey="equipment"
+                dataKey="month"
                 stroke="#64748b"
                 tick={axisTickStyle}
               />
@@ -239,10 +239,10 @@ export default function AnalyticsPage() {
               <XAxis type="number" stroke="#64748b" tick={axisTickStyle} />
               <YAxis
                 type="category"
-                dataKey="equipment"
+                dataKey="equipment_type"
                 stroke="#64748b"
                 tick={axisTickStyle}
-                width={100}
+                width={120}
               />
               <Tooltip contentStyle={chartTooltipStyle} />
               <Legend />
@@ -259,8 +259,8 @@ export default function AnalyticsPage() {
                 radius={[0, 4, 4, 0]}
               />
               <Bar
-                dataKey="industry"
-                name="Industry"
+                dataKey="industry_avg"
+                name="Industry Avg"
                 fill="#f59e0b"
                 radius={[0, 4, 4, 0]}
               />
