@@ -5,6 +5,9 @@
 ![NEXUS IQ](https://img.shields.io/badge/NEXUS_IQ-Industrial_AI-blue?style=for-the-badge)
 ![Hackathon](https://img.shields.io/badge/ET_AI-Hackathon_2026-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://nexus-iq-eta.vercel.app/)
+
+🌐 **Live Demo:** [https://nexus-iq-eta.vercel.app/](https://nexus-iq-eta.vercel.app/)
 
 ## 🧠 What is NEXUS IQ?
 
